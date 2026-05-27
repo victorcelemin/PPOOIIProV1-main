@@ -4,7 +4,8 @@ echo ====================================================
 echo   INICIANDO SISTEMA DE GESTION DE RUTAS (FASE 3)
 echo ====================================================
 echo.
-echo [1/2] Iniciando Backend y Frontend mediante PowerShell...
+echo [1/1] Iniciando Sistema Integral (Backend + Frontend embebido)...
+echo Nota: Este proceso solo requiere Java. No es necesario Node.js.
 powershell -ExecutionPolicy Bypass -File run_app.ps1
 echo.
 echo Proceso de inicio completado.

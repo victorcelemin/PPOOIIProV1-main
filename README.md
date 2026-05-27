@@ -4,14 +4,13 @@ Este proyecto es un sistema integral para la gestión de rutas logísticas, moni
 
 ---
 
-## 🚀 Cómo Iniciar el Proyecto (Rápido)
+## 🚀 Cómo Iniciar el Proyecto (Sin Node.js)
 
-Para facilitar la ejecución, he incluido un archivo ejecutable que inicia todo el ecosistema (Backend + Frontend) con un solo clic:
+Para facilitar la ejecución, el Frontend ha sido **embebido** dentro del Backend. Esto significa que **solo necesitas Java** para ejecutar la aplicación completa.
 
 1. **Doble clic en:** `START_SYSTEM.bat`
-2. El script abrirá dos terminales:
-   - **Terminal 1:** Ejecutando el Backend en `http://localhost:8080`.
-   - **Terminal 2:** Ejecutando el Frontend en `http://localhost:3000`.
+2. El script iniciará el servidor en `http://localhost:8080`.
+3. Abre tu navegador en `http://localhost:8080` para ver el Dashboard interactivo.
 
 ---
 
