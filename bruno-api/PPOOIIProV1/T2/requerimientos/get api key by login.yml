@@ -1,0 +1,37 @@
+info:
+  name: get api key by login
+  type: http
+  seq: 1
+
+http:
+  method: PUT
+  url: http://localhost:8080/api/usuarios/{{user-login}}/password
+  headers:
+    - name: "{{headers-api}}"
+      value: "{{user-apiKey}}"
+  body:
+    type: json
+    data: |-
+      {
+        /*Si recives un error 204 sin contenido, fue exitose*/
+        "password":"12345678"
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        /*const data = res.getBody();
+        // Si la respuesta trae la api-key directamente
+        if (data.) {
+          bru.setVar("user-pass",data.apiKey);
+        }*/
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

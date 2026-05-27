@@ -1,0 +1,26 @@
+info:
+  name: add persona a vehiculos
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:8080/api/vehiculo-conductores/persona//vehiculos
+  headers:
+    - name: "{{headers-api}}"
+      value: "{{user-apiKey}}"
+  body:
+    type: json
+    data: |-
+      {
+        "vehiculosIds": [1, 3, 5]
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

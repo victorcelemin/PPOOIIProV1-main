@@ -1,0 +1,27 @@
+info:
+  name: act veh
+  type: http
+  seq: 3
+
+http:
+  method: PUT
+  url: http://localhost:8080/api/vehiculos/5
+  body:
+    type: json
+    data: |-
+      {
+        "marca": "Chevrolet",
+        "modelo": 2024,
+        "color": "Azul Metálico",
+        "linea": "Onix Turbo",
+        "servicio": "Particular",
+        "capacidad": 5,
+        "combustible": "Híbrido"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

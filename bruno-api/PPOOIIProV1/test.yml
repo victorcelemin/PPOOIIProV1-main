@@ -1,0 +1,22 @@
+info:
+  name: test
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: http://localhost:8080/test/test
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        bru.setVar("user-login","jem");
+        bru.setVar("user-pass","12345678");
+        bru.setVar("headers-api","X-API-Key");
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

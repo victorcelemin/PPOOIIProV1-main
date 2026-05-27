@@ -1,0 +1,31 @@
+info:
+  name: set persona by id
+  type: http
+  seq: 3
+
+http:
+  method: PUT
+  url: http://localhost:8080/api/personas/5
+  headers:
+    - name: "{{headers-api}}"
+      value: "{{user-apiKey}}"
+  body:
+    type: json
+    data: |-
+      {
+        "identificacion": "1106",
+        "tipoIdentificacion": "CC",
+        "nombres": "Karen Sofia",
+        "apellidos": "Cardenas R",
+        "correoElectronico": "kscardenasr@ut.edu.co",
+        "tipoPersona": "A"
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

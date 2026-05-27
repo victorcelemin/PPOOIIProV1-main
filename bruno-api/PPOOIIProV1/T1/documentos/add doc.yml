@@ -1,0 +1,25 @@
+info:
+  name: add doc
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:8080/api/documentos
+  body:
+    type: json
+    data: |-
+      {
+        "codigo": "DOC-2024-001",
+        "nombre": "Licencia de Conducción",
+        "aplica_a": "AM",
+        "obligatoriedad": "RR",
+        "descripcion": "Documento público de carácter personal e intransferible que autoriza a una persona para la conducción de vehículos."
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

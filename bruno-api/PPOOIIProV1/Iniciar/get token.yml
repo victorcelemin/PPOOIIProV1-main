@@ -1,0 +1,51 @@
+info:
+  name: get token
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:8080/api/auth/login
+  body:
+    type: json
+    data: |-
+      {
+        /*Vea script
+        */
+        "login": "{{user-login}}",
+        "password": "{{user-pass}}"
+      }
+
+runtime:
+  scripts:
+    - type: before-request
+      code: |-
+        /*
+        Primer obtenemos el token
+        escriba el loging y usar pass
+        */
+        bru.setVar("user-login","jem");
+        bru.setVar("user-pass","12345678");
+        bru.setVar("headers-api","X-API-Key");
+        bru.setVar("user-apiKey","1612c5ad-abdf-45eb-b836-a47ae7d86ab2");
+
+        const body = req.getBody();
+
+        if(body.token){
+          bru.setVar("token",body.token);
+        }
+    - type: after-response
+      code: |-
+        // Obtenemos el cuerpo de la respuesta
+        const body = res.getBody();
+        // Si el token existe en la respuesta, lo guardamos en una variable
+        if (body.token) {
+          bru.setVar("token", body.token);
+          console.log("Token guardado con éxito");
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

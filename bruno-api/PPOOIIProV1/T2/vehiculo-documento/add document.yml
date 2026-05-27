@@ -1,0 +1,51 @@
+info:
+  name: add document
+  type: http
+  seq: 3
+
+http:
+  method: POST
+  url: http://localhost:8080/api/vehiculo-documentos/vehiculo/1/cargue-base64
+  headers:
+    - name: "{{headers-api}}"
+      value: "{{user-apiKey}}"
+  body:
+    type: json
+    data: |-
+      {
+        "documentos": [
+          {
+            "documentoId": 3,
+            "fechaExpedicion": "2024-01-01",
+            "fechaVencimiento": "2025-01-01",
+            "estado": "Habilitado",
+            "documentoPdf": "BASE64_DEL_SOAT..."
+          },
+          {
+            "documentoId": 4,
+            "fechaExpedicion": "2024-01-01",
+            "fechaVencimiento": "2025-01-01",
+            "estado": "En Verificación",
+            "documentoPdf": "BASE64_DE_LA_TECNOMECANICA..."
+          }
+        ]
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const data = res.getBody();
+        // Si la respuesta trae la api-key directamente
+        if (data.apiKey) {
+          bru.setVar("user-apiKey",data.apiKey);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,26 @@
+info:
+  name: set persona a vehiculos
+  type: http
+  seq: 2
+
+http:
+  method: PUT
+  url: http://localhost:8080/api/vehiculo-conductores/1/estado
+  headers:
+    - name: "{{headers-api}}"
+      value: "{{user-apiKey}}"
+  body:
+    type: json
+    data: |-
+      {
+        "estado": "PO"
+      }
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

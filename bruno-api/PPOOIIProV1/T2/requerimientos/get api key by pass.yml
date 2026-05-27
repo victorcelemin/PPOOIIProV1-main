@@ -1,0 +1,30 @@
+info:
+  name: get api key by pass
+  type: http
+  seq: 2
+
+http:
+  method: GET
+  url: http://localhost:8080/api/usuarios/{{user-login}}/api-key/regenerar
+  headers:
+    - name: "{{headers-api}}"
+      value: "{{user-apiKey}}"
+  auth:
+    type: bearer
+    token: "{{token}}"
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const data = res.getBody();
+        // Si la respuesta trae la api-key directamente
+        if (data.apiKey) {
+          bru.setVar("user-apiKey",data.apiKey);
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,36 @@
+info:
+  name: add veh
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:8080/api/vehiculos
+  body:
+    type: json
+    data: |-
+      {
+        "placa": "DIF456",
+        "tipo": "auto",
+        "marca": "Chevrolet",
+        "modelo": 2023,
+        "linea": "Onix",
+        "servicio": "Particular",
+        "color": "Gris",
+        "combustible": "Gasolina",
+        "capacidad": 5,
+        "documentos": [
+          {
+            "documento": { "id": 3 },
+            "fechaExpedicion": "2026-01-01",
+            "fechaVencimiento": "2027-01-01"
+          }
+        ]
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

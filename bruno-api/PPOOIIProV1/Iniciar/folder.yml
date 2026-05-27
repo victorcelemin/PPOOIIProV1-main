@@ -1,0 +1,7 @@
+info:
+  name: Iniciar
+  type: folder
+  seq: 2
+
+request:
+  auth: inherit

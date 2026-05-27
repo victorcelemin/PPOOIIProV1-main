@@ -1,0 +1,7 @@
+info:
+  name: vehiculo-documento
+  type: folder
+  seq: 4
+
+request:
+  auth: inherit

@@ -1,0 +1,9 @@
+package lab02.demo.dto;
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
+
+import java.util.List;
+
+public record CargueDocumentosRequest(@NotEmpty @Valid List<CargueDocumentoItem> documentos) {
+}
