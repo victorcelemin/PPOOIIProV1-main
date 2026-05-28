@@ -23,7 +23,7 @@ public class GeocodingServiceImpl implements GeocodingService {
 
     @Override
     public double[] obtenerCoordenadas(String ubicacion) {
-        String url = UriComponentsBuilder.fromHttpUrl("https://maps.googleapis.com/maps/api/geocode/json")
+        String url = UriComponentsBuilder.fromUriString("https://maps.googleapis.com/maps/api/geocode/json")
                 .queryParam("address", ubicacion)
                 .queryParam("key", apiKey)
                 .toUriString();
