@@ -33,13 +33,17 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/public/**").permitAll()
-                        .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/test/**").permitAll()
-                        .requestMatchers("/error").permitAll()
+                        // Permitir recursos estáticos del Frontend
+                        .requestMatchers("/", "/index.html", "/static/**", "/_next/**", "/*.html", "/*.ico", "/*.svg", "/*.png").permitAll()
+                        // Permitir APIs públicas y Auth
+                        .requestMatchers("/api/public/**", "/api/auth/**").permitAll()
+                        .requestMatchers("/test/**", "/error").permitAll()
+                        // Rutas protegidas por Rol
                         .requestMatchers("/api/trayectos/**").hasAnyRole("ADMIN", "CONDUTOR")
                         .requestMatchers("/api/**").hasRole("ADMIN")
-                        .anyRequest().denyAll())
+                        // Cualquier otra petición requiere autenticación
+                        .anyRequest().authenticated())
+
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterAfter(adminApiKeyFilter, JwtAuthenticationFilter.class);
         return http.build();
